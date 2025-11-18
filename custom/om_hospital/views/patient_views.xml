@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_hospital_patient_tree">
+        <field name="name">hospital.patient.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree string="Patients" >
+                <field name="name"/>
+                <field name="date_of_birth"/>
+                <field name="gender" optional="show"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_hospital_patient_form">
+        <field name="name">hospital.patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form string="Patients">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date_of_birth"/>
+                             <field name="is_minor"/>
+                             <field name="guardian" invisible="not is_minor" requried="is_minor"/>
+
+                        </group>
+                        <group>
+                            <field name="gender"/>
+                              <field name="is_pretty" invisible="not gender=='female'"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
+
+                        </group>
+                    </group>
+
+
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" options="{'open_attachments': True}"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hospital_patient" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+
+</odoo>

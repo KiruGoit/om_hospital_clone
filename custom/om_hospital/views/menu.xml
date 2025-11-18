@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_hospital_root"
+              name="HMS"
+              web_icon="om_hospital,static/description/icon.png"/>
+
+    <!-- Front Desk Menu -->
+    <menuitem id="menu_front_desk"
+              name="Front Desk"
+              parent="menu_hospital_root"/>
+    <!-- Billing Menu-->
+    <menuitem id="menu_billing"
+              name="Billing"
+              sequence="15"
+              parent="menu_hospital_root"/>
+    <!-- Billing Sub Menu-->
+    <menuitem id="menu_hms_invoicing"
+              name="Invoice"
+              action="account.action_move_out_invoice_type"
+              parent="menu_billing"/>
+    <menuitem id="menu_hms_payment"
+              name="Payment"
+              action="account.action_account_payments"
+              parent="menu_billing"/>
+
+    <!-- Patient Menus -->
+    <menuitem id="menu_patient"
+              name="Patient"
+              parent="menu_front_desk"
+              action="action_hospital_patient"/>
+
+    <menuitem id="menu_patient_readonly"
+              name="View Patients"
+
+              parent="menu_front_desk"
+              action="action_hospital_readonly_patient"/>
+
+    <!-- Appointment Menus -->
+    <menuitem id="menu_appointment"
+              name="Patient Appointments"
+              parent="menu_front_desk"
+              action="action_hospital_appointment"/>
+
+    <menuitem id="menu_appointment_line"
+              name="Appointment Lines"
+              parent="menu_front_desk"
+              action="action_hospital_appointment_line"/>
+
+    <!-- Configuration Menus -->
+    <menuitem id="menu_configuration"
+              name="Configuration"
+              sequence="150"
+              groups="om_hospital.group_hospital_doctors"
+              parent="menu_hospital_root"/>
+
+    <menuitem id="menu_patient_tag"
+              name="Patient Tags"
+              parent="menu_configuration"
+              action="action_patient_tag"/>
+</odoo>
